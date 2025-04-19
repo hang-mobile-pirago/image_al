@@ -14,16 +14,50 @@ class HomeScreen extends BaseView<HomeController> {
   @override
   Widget builderProvider(BuildContext context, HomeController controller) {
     return Scaffold(
-      appBar: AppBar(title: Text('APPME'),),
+      appBar: AppBar(
+        title: Text('APP ME'),
+      ),
       body: Container(
         margin: EdgeInsets.all(10),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Hello', style: TextStyle(color: Colors.black),),
-            /*TextField(
+            BBSTextField(
               controller: controller.prompt,
-              onChanged: (value) => controller.setPrompt(value),
-            ),*/
+              onChange: (txt) => controller.setPrompt(txt),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 10),
+              width: MediaQuery.sizeOf(context).width,
+              height: 42,
+              child: FilledButton(
+                style: ButtonStyle(
+                    backgroundColor: WidgetStateProperty.all(Colors.green),
+                    foregroundColor: WidgetStateProperty.all(Colors.white),
+                    textStyle: WidgetStateProperty.all(TextStyle(
+                        color: Colors.white,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w700)),
+                    shape: WidgetStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    )),
+                child: Text(
+                  'Send',
+                  style: TextStyle(color: Colors.white),
+                ),
+                onPressed: () => controller.getImage(),
+              ),
+            ),
+            SizedBox(height: 20),
+            controller.genImageFile != null
+                ? Image.file(
+                    controller.genImageFile!,
+                    height: 200,
+                    width: MediaQuery.sizeOf(context).width,
+                  )
+                : Text('data'),
           ],
         ),
       ),
