@@ -1,6 +1,7 @@
 import 'package:bai1/app/home_controller.dart';
 import 'package:bai1/share/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class HomeScreen extends BaseView<HomeController> {
   HomeScreen({super.key}) : super(controller: HomeController());
@@ -22,9 +23,44 @@ class HomeScreen extends BaseView<HomeController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            controller.genImageFile != null
+                ? Image.file(
+                    controller.genImageFile!,
+                    height: 200,
+                    width: MediaQuery.sizeOf(context).width,
+                  )
+                : Center(
+                    child: Lottie.asset('assets/loading_animation.json'),
+                  ),
+            SizedBox(height: 20),
             BBSTextField(
               controller: controller.prompt,
               onChange: (txt) => controller.setPrompt(txt),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 10),
+              width: MediaQuery.sizeOf(context).width,
+              height: 42,
+              child: FilledButton(
+                style: ButtonStyle(
+                  backgroundColor: WidgetStateProperty.all(Colors.green),
+                  foregroundColor: WidgetStateProperty.all(Colors.white),
+                  textStyle: WidgetStateProperty.all(TextStyle(
+                      color: Colors.white,
+                      fontSize: 13,
+                      fontWeight: FontWeight.w700)),
+                  shape: WidgetStateProperty.all(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                ),
+                child: Text(
+                  'Download',
+                  style: TextStyle(color: Colors.white),
+                ),
+                onPressed: () {},
+              ),
             ),
             Container(
               margin: EdgeInsets.only(top: 10),
@@ -50,14 +86,6 @@ class HomeScreen extends BaseView<HomeController> {
                 onPressed: () => controller.getImage(),
               ),
             ),
-            SizedBox(height: 20),
-            controller.genImageFile != null
-                ? Image.file(
-                    controller.genImageFile!,
-                    height: 200,
-                    width: MediaQuery.sizeOf(context).width,
-                  )
-                : Text('data'),
           ],
         ),
       ),
