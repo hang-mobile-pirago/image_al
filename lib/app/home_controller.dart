@@ -1,8 +1,11 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:bai1/share/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../response/api_client.dart';
 
@@ -28,9 +31,7 @@ class HomeController extends BBSBaseController {
     await ApiClient().sentMultipartRequest(
       prompt.text,
       (object) {
-        _setOnSuccess(object);
-        _isLoading = false;
-        notifyListeners();
+        _setOnSuccess(object as List<int>);
       },
       (errorCode) {
         _isLoading = false;
@@ -39,14 +40,28 @@ class HomeController extends BBSBaseController {
     );
   }
 
-  Future<void> _setOnSuccess(dynamic object) async {
+  Future<void> _setOnSuccess(List<int> bytes) async {
     final directory = await getApplicationDocumentsDirectory();
-    _genImageFile = File('${directory.path}/imagine.png');
-    await _genImageFile?.writeAsBytes(object);
+    final timestamp = DateTime.now().millisecondsSinceEpoch;
+    File genImageFile = File('${directory.path}/${timestamp}_imagine.png');
+    await genImageFile.writeAsBytes(bytes, flush: true);
+    _genImageFile = genImageFile;
+    _isLoading = false;
     notifyListeners();
-    _isLoading = true;
-    notifyListeners();
+  }
 
-    await Future.delayed(Duration(seconds: 3));
+  Future<void> saveImageToGallery() async {
+    final imageBytes = await _genImageFile!.readAsBytes();
+    final permission = await Permission.photos.request();
+    if (permission.isGranted) {
+      final result = await ImageGallerySaver.saveImage(
+        imageBytes,
+        quality: 100,
+        name: "my_flutter_image",
+      );
+      print("Kết quả lưu ảnh: $result");
+    } else {
+      print("Không được cấp quyền");
+    }
   }
 }
