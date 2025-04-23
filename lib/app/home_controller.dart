@@ -3,7 +3,6 @@ import 'dart:typed_data';
 
 import 'package:bai1/share/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -50,18 +49,5 @@ class HomeController extends BBSBaseController {
     notifyListeners();
   }
 
-  Future<void> saveImageToGallery() async {
-    final imageBytes = await _genImageFile!.readAsBytes();
-    final permission = await Permission.photos.request();
-    if (permission.isGranted) {
-      final result = await ImageGallerySaver.saveImage(
-        imageBytes,
-        quality: 100,
-        name: "my_flutter_image",
-      );
-      print("Kết quả lưu ảnh: $result");
-    } else {
-      print("Không được cấp quyền");
-    }
-  }
+
 }

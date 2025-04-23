@@ -1,7 +1,6 @@
 import 'package:bai1/app/home_controller.dart';
 import 'package:bai1/share/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 
 class HomeScreen extends BaseView<HomeController> {
   HomeScreen({super.key}) : super(controller: HomeController());
@@ -24,7 +23,7 @@ class HomeScreen extends BaseView<HomeController> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             controller.isLoading
-                ? Lottie.asset('assets/loading_animation.json')
+                ? CircularProgressIndicator()
                 : controller.genImageFile != null
                     ? Image.file(controller.genImageFile!,
                         key: ValueKey(
@@ -36,7 +35,6 @@ class HomeScreen extends BaseView<HomeController> {
               controller: controller.prompt,
               onChange: (txt) => controller.setPrompt(txt),
             ),
-
             Container(
               margin: EdgeInsets.only(top: 10),
               width: MediaQuery.sizeOf(context).width,
@@ -84,7 +82,7 @@ class HomeScreen extends BaseView<HomeController> {
                   'Download',
                   style: TextStyle(color: Colors.white),
                 ),
-                onPressed: () => controller.saveImageToGallery(),
+                onPressed: () {},
               ),
             ),
           ],
