@@ -82,7 +82,7 @@ class HomeScreen extends BaseView<HomeController> {
                   'Download',
                   style: TextStyle(color: Colors.white),
                 ),
-                onPressed: () {},
+                onPressed: () {controller.saveImageToGallery();},
               ),
             ),
           ],
