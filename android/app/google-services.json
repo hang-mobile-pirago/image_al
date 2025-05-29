@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1023692387320",
+    "project_id": "imageapp-62f19",
+    "storage_bucket": "imageapp-62f19.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1023692387320:android:11b54f546cfe4893559c0d",
+        "android_client_info": {
+          "package_name": "com.example.bai1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfZFhdKeDPFPoa9Axgv_FAqJFL6RHsEmc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
