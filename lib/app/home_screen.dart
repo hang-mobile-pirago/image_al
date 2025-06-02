@@ -3,7 +3,8 @@ import 'package:bai1/share/widgets.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends BaseView<HomeController> {
-  HomeScreen({super.key}) : super(controller: HomeController());
+  HomeScreen({HomeController? controller, super.key})
+      : super(controller: controller ?? HomeController());
 
   @override
   Widget builderChild(BuildContext context) {
@@ -32,7 +33,7 @@ class HomeScreen extends BaseView<HomeController> {
                     : Icon(Icons.abc_outlined),
             SizedBox(height: 20),
             BBSTextField(
-              controller: controller.prompt,
+              key: Key('input prompt'),
               onChange: (txt) => controller.setPrompt(txt),
             ),
             Container(

@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:bai1/share/widgets.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -10,7 +9,10 @@ import 'package:saver_gallery/saver_gallery.dart';
 import '../response/api_client.dart';
 
 class HomeController extends BBSBaseController {
-  final prompt = TextEditingController();
+  String? _prompt ;
+
+  String? get prompt => _prompt;
+
   File? _genImageFile;
 
   File? get genImageFile => _genImageFile;
@@ -21,15 +23,16 @@ class HomeController extends BBSBaseController {
 
   void setPrompt(String? value) {
     if (value == null) return;
-    prompt.text = value;
+    _prompt= value.trim();
     notifyListeners();
   }
 
   Future<void> getImage() async {
+    if(_prompt == null) return;
     _isLoading = true;
     notifyListeners();
     await ApiClient().sentMultipartRequest(
-      prompt.text,
+      _prompt!,
       (object) {
         _setOnSuccess(object as List<int>);
       },
@@ -55,7 +58,7 @@ class HomeController extends BBSBaseController {
     if (await Permission.photos.request().isGranted ||
         await Permission.storage.request().isGranted) {
       final Uint8List imageBytes = await genImageFile!.readAsBytes();
-      final result = await SaverGallery.saveImage(
+       await SaverGallery.saveImage(
         imageBytes,
         fileName: genImageFile!.path.split('/').last.split('.').first,
         quality: 100,
@@ -65,4 +68,13 @@ class HomeController extends BBSBaseController {
       print("Không có quyền truy cập ảnh/thư viện");
     }
   }
+
+  void changeIsLoading(bool value) {
+    _isLoading = value;
+    notifyListeners();
+  }
+   void changeImageFile(File? img) {
+    _genImageFile = img;
+    notifyListeners();
+   }
 }

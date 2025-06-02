@@ -3,8 +3,10 @@ part of 'widgets.dart';
 class BBSTextField extends StatelessWidget {
   final TextEditingController? controller;
   final Function(String? txt)? onChange;
+  final Key? key;
 
-  BBSTextField({this.controller, this.onChange});
+
+  BBSTextField({this.key, this.controller, this.onChange}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
