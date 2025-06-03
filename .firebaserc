@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "default": "imageapp-62f19",
+    "myproject-dev": "imageapp-62f19"
+  },
+  "targets": {},
+  "etags": {}
+}

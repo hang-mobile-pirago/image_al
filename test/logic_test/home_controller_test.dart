@@ -1,5 +1,6 @@
 import 'package:bai1/app/home_controller.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 
 void main() {
   group('HomeController - setPrompt', () {
@@ -20,12 +21,13 @@ void main() {
       controller.setPrompt(null);
       expect(controller.prompt, isNotEmpty);
     });
+
     /// push error if empty
     test('setPromptSpace', () {
       String testString = '     ';
       controller.setPrompt(testString);
       controller.setPrompt(testString);
-      expect(controller.prompt,isNotEmpty );
+      expect(controller.prompt, isNotEmpty);
     });
   });
 }
