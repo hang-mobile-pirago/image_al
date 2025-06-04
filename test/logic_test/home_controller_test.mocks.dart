@@ -4,12 +4,10 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
-import 'dart:io' as _i5;
-import 'dart:ui' as _i6;
 
-import 'package:bai1/app/home_controller.dart' as _i3;
-import 'package:flutter/material.dart' as _i2;
+import 'package:bai1/response/api_client.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:mockito/src/dummies.dart' as _i3;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -25,158 +23,48 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeBuildContext_0 extends _i1.SmartFake implements _i2.BuildContext {
-  _FakeBuildContext_0(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
-/// A class which mocks [HomeController].
+/// A class which mocks [ApiClient].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockHomeController extends _i1.Mock implements _i3.HomeController {
-  MockHomeController() {
+class MockApiClient extends _i1.Mock implements _i2.ApiClient {
+  MockApiClient() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  bool get isLoading => (super.noSuchMethod(
-        Invocation.getter(#isLoading),
-        returnValue: false,
-      ) as bool);
-
-  @override
-  _i2.BuildContext get context => (super.noSuchMethod(
-        Invocation.getter(#context),
-        returnValue: _FakeBuildContext_0(
+  String get BASE_URL => (super.noSuchMethod(
+        Invocation.getter(#BASE_URL),
+        returnValue: _i3.dummyValue<String>(
           this,
-          Invocation.getter(#context),
+          Invocation.getter(#BASE_URL),
         ),
-      ) as _i2.BuildContext);
+      ) as String);
 
   @override
-  bool get loading => (super.noSuchMethod(
-        Invocation.getter(#loading),
-        returnValue: false,
-      ) as bool);
-
-  @override
-  set context(_i2.BuildContext? _context) => super.noSuchMethod(
-        Invocation.setter(
-          #context,
-          _context,
+  String get token => (super.noSuchMethod(
+        Invocation.getter(#token),
+        returnValue: _i3.dummyValue<String>(
+          this,
+          Invocation.getter(#token),
         ),
-        returnValueForMissingStub: null,
-      );
+      ) as String);
 
   @override
-  set loading(bool? value) => super.noSuchMethod(
-        Invocation.setter(
-          #loading,
-          value,
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  bool get hasListeners => (super.noSuchMethod(
-        Invocation.getter(#hasListeners),
-        returnValue: false,
-      ) as bool);
-
-  @override
-  void setPrompt(String? value) => super.noSuchMethod(
+  _i4.Future<void> sentMultipartRequest(
+    String? prompt,
+    dynamic Function(dynamic)? onSuccess,
+    dynamic Function(String)? onError,
+  ) =>
+      (super.noSuchMethod(
         Invocation.method(
-          #setPrompt,
-          [value],
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  _i4.Future<void> getImage() => (super.noSuchMethod(
-        Invocation.method(
-          #getImage,
-          [],
+          #sentMultipartRequest,
+          [
+            prompt,
+            onSuccess,
+            onError,
+          ],
         ),
         returnValue: _i4.Future<void>.value(),
         returnValueForMissingStub: _i4.Future<void>.value(),
       ) as _i4.Future<void>);
-
-  @override
-  _i4.Future<void> saveImageToGallery() => (super.noSuchMethod(
-        Invocation.method(
-          #saveImageToGallery,
-          [],
-        ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
-
-  @override
-  void changeIsLoading(bool? value) => super.noSuchMethod(
-        Invocation.method(
-          #changeIsLoading,
-          [value],
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  void changeImageFile(_i5.File? img) => super.noSuchMethod(
-        Invocation.method(
-          #changeImageFile,
-          [img],
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  void update(Function? update) => super.noSuchMethod(
-        Invocation.method(
-          #update,
-          [update],
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  void addListener(_i6.VoidCallback? listener) => super.noSuchMethod(
-        Invocation.method(
-          #addListener,
-          [listener],
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  void removeListener(_i6.VoidCallback? listener) => super.noSuchMethod(
-        Invocation.method(
-          #removeListener,
-          [listener],
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  void dispose() => super.noSuchMethod(
-        Invocation.method(
-          #dispose,
-          [],
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  void notifyListeners() => super.noSuchMethod(
-        Invocation.method(
-          #notifyListeners,
-          [],
-        ),
-        returnValueForMissingStub: null,
-      );
 }

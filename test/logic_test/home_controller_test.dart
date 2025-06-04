@@ -1,7 +1,12 @@
 import 'package:bai1/app/home_controller.dart';
+import 'package:bai1/response/api_client.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
 
+import 'home_controller_test.mocks.dart';
+
+@GenerateMocks([ApiClient])
 void main() {
   group('HomeController - setPrompt', () {
     late HomeController controller;
@@ -30,4 +35,15 @@ void main() {
       expect(controller.prompt, isNotEmpty);
     });
   });
+
+  test('getImage calls ApiClient and handles success', () async {
+    final mockApi = MockApiClient();
+    final controller = HomeController();
+    controller.setPrompt("test");
+    when(mockApi.sentMultipartRequest(controller.prompt, any, any)).thenAnswer((realInvocation) async{
+      final success = realInvocation.positionalArguments[1] as Function;
+      success([1]);
+    },);
+  });
+
 }
