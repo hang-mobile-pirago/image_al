@@ -1,6 +1,9 @@
-import 'package:bai1/app/home_controller.dart';
-import 'package:bai1/share/widgets.dart';
+import 'dart:math';
+
+import 'package:bai1/app/home/home_controller.dart';
+import 'package:bai1/share/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+part 'widgets/overlay_search_ideal.dart';
 
 class HomeScreen extends BaseView<HomeController> {
   HomeScreen({HomeController? controller, super.key})
@@ -36,6 +39,7 @@ class HomeScreen extends BaseView<HomeController> {
               key: Key('input prompt'),
               onChange: (txt) => controller.setPrompt(txt),
             ),
+            OverlaySearchIdeal(),
             Container(
               margin: EdgeInsets.only(top: 10),
               width: MediaQuery.sizeOf(context).width,

@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:bai1/app/home_controller.dart';
-import 'package:bai1/app/home_screen.dart';
+import 'package:bai1/app/home/home_controller.dart';
+import 'package:bai1/app/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 

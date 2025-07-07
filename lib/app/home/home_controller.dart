@@ -1,12 +1,12 @@
 import 'dart:io';
 
-import 'package:bai1/share/widgets.dart';
+import 'package:bai1/share/widgets/widgets.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:saver_gallery/saver_gallery.dart';
 
-import '../response/api_client.dart';
+import '../../response/api_client.dart';
 
 class HomeController extends BBSBaseController {
   String? _prompt ;

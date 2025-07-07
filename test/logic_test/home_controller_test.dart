@@ -1,4 +1,4 @@
-import 'package:bai1/app/home_controller.dart';
+import 'package:bai1/app/home/home_controller.dart';
 import 'package:bai1/response/api_client.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -36,13 +36,13 @@ void main() {
     });
   });
 
-  test('getImage calls ApiClient and handles success', () async {
+  test('sentMultipartRequest handles success', () async {
     final mockApi = MockApiClient();
     final controller = HomeController();
     controller.setPrompt("test");
     when(mockApi.sentMultipartRequest(controller.prompt, any, any)).thenAnswer((realInvocation) async{
       final success = realInvocation.positionalArguments[1] as Function;
-      success([1]);
+      success(['14565']);
     },);
   });
 
