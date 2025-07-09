@@ -39,6 +39,20 @@ android {
         }
     }
 
+    flavorDimensions "env"
+    productFlavors {
+        dev {
+            dimension "env"
+//            applicationIdSuffix ".dev"
+            versionNameSuffix "-dev"
+        }
+        stg {
+            dimension "env"
+//            applicationIdSuffix ".stg"
+            versionNameSuffix "-stg"
+        }
+    }
+
 }
 
 flutter {
