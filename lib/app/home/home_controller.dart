@@ -9,7 +9,7 @@ import 'package:saver_gallery/saver_gallery.dart';
 import '../../response/api_client.dart';
 
 class HomeController extends BBSBaseController {
-  String? _prompt ;
+  String? _prompt;
 
   String? get prompt => _prompt;
 
@@ -21,18 +21,29 @@ class HomeController extends BBSBaseController {
 
   bool get isLoading => _isLoading;
 
+  String? _style = '';
+
+  String? get style => _style;
+
   void setPrompt(String? value) {
     if (value == null) return;
-    _prompt= value.trim();
+    _prompt = value.trim();
+    notifyListeners();
+  }
+
+  void setStyle(String? value) {
+    if (value == null) return;
+    _style = value.trim();
     notifyListeners();
   }
 
   Future<void> getImage() async {
-    if(_prompt == null) return;
+    if (_prompt == null) return;
     _isLoading = true;
     notifyListeners();
+    if(_prompt!=null|| _style!=null) return;
     await ApiClient().sentMultipartRequest(
-      _prompt!,
+      _prompt!, _style!,
       (object) {
         _setOnSuccess(object as List<int>);
       },
@@ -58,7 +69,7 @@ class HomeController extends BBSBaseController {
     if (await Permission.photos.request().isGranted ||
         await Permission.storage.request().isGranted) {
       final Uint8List imageBytes = await genImageFile!.readAsBytes();
-       await SaverGallery.saveImage(
+      await SaverGallery.saveImage(
         imageBytes,
         fileName: genImageFile!.path.split('/').last.split('.').first,
         quality: 100,
@@ -73,8 +84,9 @@ class HomeController extends BBSBaseController {
     _isLoading = value;
     notifyListeners();
   }
-   void changeImageFile(File? img) {
+
+  void changeImageFile(File? img) {
     _genImageFile = img;
     notifyListeners();
-   }
+  }
 }

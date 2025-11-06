@@ -14,7 +14,14 @@ class _OverlaySearchIdeal extends State<OverlaySearchIdeal> {
 
   OverlayEntry? _overlayEntry;
 
-  List<String> _allSuggestions = ['Apple', 'Banana', 'Cherry', 'Date', 'Grape'];
+  List<String> _allSuggestions = [
+    'realistic',
+    'anime',
+    'cartoon',
+    'art',
+    'character',
+    'character'
+  ];
   List<String> _filteredSuggestions = [];
 
   void _showOverlay() {
@@ -94,10 +101,13 @@ class _OverlaySearchIdeal extends State<OverlaySearchIdeal> {
         controller: _controller,
         focusNode: _focusNode,
         decoration: InputDecoration(
-          labelText: 'Search fruit',
+          labelText: 'Search style',
           border: OutlineInputBorder(),
         ),
-        onChanged: _updateSuggestions,
+        onChanged: (value) {
+          _updateSuggestions(value);
+          context.read<HomeController>().setStyle(value);
+        },
         onEditingComplete: _removeOverlay,
       ),
     );

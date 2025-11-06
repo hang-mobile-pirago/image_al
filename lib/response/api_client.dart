@@ -11,13 +11,14 @@ class ApiClient {
 
   Future<void> sentMultipartRequest(
     String prompt,
+    String style,
     Function(dynamic object)? onSuccess,
     Function(String errorCode)? onError,
   ) async {
     var request = http.MultipartRequest('POST', Uri.parse(BASE_URL));
     request.headers['Authorization'] = "Bearer $token";
     request.fields['prompt'] = prompt;
-    request.fields['style'] = "realistic";
+    request.fields['style'] = style;
     request.fields['high_res_result'] = "0";
     try {
       var streamedResponse = await request.send();
