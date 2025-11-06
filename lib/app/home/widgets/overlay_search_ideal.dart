@@ -17,10 +17,6 @@ class _OverlaySearchIdeal extends State<OverlaySearchIdeal> {
   List<String> _allSuggestions = [
     'realistic',
     'anime',
-    'cartoon',
-    'art',
-    'character',
-    'character'
   ];
   List<String> _filteredSuggestions = [];
 
